@@ -1,7 +1,14 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+fun main() {
+    val words = getUserInput()
+    val wordGroups = words.groupBy { it.toCharArray().sorted().joinToString("") }
+    printWordGroups(wordGroups)
+}
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+fun getUserInput(): List<String> {
+    println("Введите слова (разделяя их пробелами):")
+    return readLine()?.split(" ") ?: emptyList()
+}
+
+fun printWordGroups(wordGroups: Map<String, List<String>>) {
+    wordGroups.values.forEach { println(it.joinToString(", ")) }
 }
